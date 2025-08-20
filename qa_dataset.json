@@ -1,0 +1,13 @@
+[
+  {"question": "What is your name?", "answer": "Kunal Vashistha"},
+  {"question": "What is your email?", "answer": "vashisthakunal7@gmail.com"},
+  {"question": "What is your phone number?", "answer": "9079042418"},
+  {"question": "What is your address?", "answer": "204 Shantikunaj, Alwar, Rajasthan"},
+  {"question": "What is your GitHub profile?", "answer": "https://github.com/Kunalvasi"},
+  {"question": "What is your LinkedIn profile?", "answer": "https://www.linkedin.com/in/kunalvashistha/"},
+  {"question": "What is your professional summary?", "answer": "MERN Stack Developer with hands-on experience in building full-stack web applications using MongoDB, Express.js, React.js, and Node.js. Proficient in creating RESTful APIs, managing databases, and developing responsive, user-friendly interfaces. Strong problem-solving skills with a focus on clean code and performance."},
+  {"question": "What are your skills?", "answer": "React.js, Node.js, Express.js, MongoDB, JavaScript, HTML5, CSS3, Redux, Git, GitHub, Tailwind CSS, Bootstrap, RESTful APIs, JWT, Postman, Firebase, Cloudinary, Axios, JSON, npm, VS Code"},
+  {"question": "What is your education?", "answer": "B.Tech in Computer Science and Engineering from Bikaner Technical University"},
+  {"question": "What projects have you completed?", "answer": "Razorpay Clone (UPI payment app UI/frontend using React.js), Netflix Clone (Movie browsing platform), Tic-Tac-Toe (Interactive game built with React), Food Delivery Site (Menu, cart, and checkout functionality), Portfolio Site (Responsive personal portfolio website), JWT Auth System (Login and signup with token-based authentication), File Uploader (Upload and manage files using Cloudinary), Student Dashboard (API-powered dashboard with dynamic data in React)"},
+  {"question": "What achievements do you have?", "answer": "Qualified GATE 2024 – National-level engineering entrance exam"}
+]
