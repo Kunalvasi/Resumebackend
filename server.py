@@ -5,6 +5,8 @@ import faiss
 import numpy as np
 import json
 from fastapi.middleware.cors import CORSMiddleware
+import os
+import uvicorn
 
 # -------------------------
 # Step 1: Load dataset
@@ -32,20 +34,31 @@ index.add(embeddings.astype('float32'))
 # -------------------------
 app = FastAPI()
 
-# Allow frontend from localhost
+# -------------------------
+# CORS Setup
+# -------------------------
+origins = [
+    "https://resumefrontend-two.vercel.app",  # deployed frontend URL
+    "http://localhost:5500",                  # local frontend testing
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # or your frontend URL
+    allow_origins=origins,  # replace "*" if you want specific origins
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+# -------------------------
 # Request model
+# -------------------------
 class QueryRequest(BaseModel):
     message: str
 
+# -------------------------
 # API endpoint
+# -------------------------
 @app.post("/api/v1/resume")
 async def get_answer(request: QueryRequest):
     query = request.message
@@ -58,7 +71,16 @@ async def get_answer(request: QueryRequest):
     answer = qa_pairs[best_match_index]['answer']
     return {"reply": answer}
 
-# Optional: root endpoint
+# -------------------------
+# Optional root endpoint
+# -------------------------
 @app.get("/")
 async def root():
     return {"message": "Vector search API running!"}
+
+# -------------------------
+# Run app with dynamic port for Render
+# -------------------------
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))  # Render sets PORT automatically
+    uvicorn.run("server:app", host="0.0.0.0", port=port, reload=True)
