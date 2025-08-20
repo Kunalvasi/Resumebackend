@@ -5,6 +5,8 @@ import faiss
 import numpy as np
 import json
 from fastapi.middleware.cors import CORSMiddleware
+import os
+import uvicorn
 
 # -------------------------
 # Step 1: Load dataset
@@ -75,3 +77,10 @@ async def get_answer(request: QueryRequest):
 @app.get("/")
 async def root():
     return {"message": "Vector search API running!"}
+
+# -------------------------
+# Run app with dynamic port for Render
+# -------------------------
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))  # Render sets PORT automatically
+    uvicorn.run("server:app", host="0.0.0.0", port=port, reload=True)
