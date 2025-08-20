@@ -32,20 +32,31 @@ index.add(embeddings.astype('float32'))
 # -------------------------
 app = FastAPI()
 
-# Allow frontend from localhost
+# -------------------------
+# CORS Setup
+# -------------------------
+origins = [
+    "https://resumefrontend-two.vercel.app",  # Your deployed frontend
+    "http://localhost:5500",                  # Optional: local frontend testing
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # or your frontend URL
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+# -------------------------
 # Request model
+# -------------------------
 class QueryRequest(BaseModel):
     message: str
 
+# -------------------------
 # API endpoint
+# -------------------------
 @app.post("/api/v1/resume")
 async def get_answer(request: QueryRequest):
     query = request.message
@@ -58,7 +69,9 @@ async def get_answer(request: QueryRequest):
     answer = qa_pairs[best_match_index]['answer']
     return {"reply": answer}
 
-# Optional: root endpoint
+# -------------------------
+# Optional root endpoint
+# -------------------------
 @app.get("/")
 async def root():
     return {"message": "Vector search API running!"}
